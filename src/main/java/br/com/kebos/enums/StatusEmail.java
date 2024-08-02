@@ -1,4 +1,4 @@
-package com.ms.email.enums;
+package br.com.kebos.enums;
 
 public enum StatusEmail {
     PROCESSING,

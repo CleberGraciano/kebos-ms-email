@@ -1,0 +1,24 @@
+version: "2.0"
+
+services:
+  kebos-email:
+    build: .
+    restart: on-failure
+    env_file: .env
+    ports:
+      - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.mail.host": "smtp.gmail.com",
+        "spring.mail.port": "587",
+        "spring.mail.username": "$EMAIL",
+        "spring.mail.password": "$PASSWORD_EMAIL",
+        "spring.mail.properties.mail.smtp.auth": "true",
+        "spring.mail.properties.mail.smtp.starttls.enable": "true"
+      }'
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
+volumes:
+  db:
